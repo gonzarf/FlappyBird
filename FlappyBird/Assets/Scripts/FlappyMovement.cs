@@ -1,53 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class FlappyMovement : MonoBehaviour
 {
     public float force;
     public KeyCode jumpKey;
-    public GameObjectPool bulletPool;
 
-    private Rigidbody _rb;
+    private Rigidbody2D _rb;
+    private float _rotationSpeed = 10f;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN 
-        // pc
         if (Input.GetKeyDown(jumpKey))
         {
-            _rb.velocity = Vector3.zero;
-            _rb.AddForce(Vector3.up * force, ForceMode.Impulse);
+            _rb.velocity = Vector2.zero;
+            _rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         }
+    }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject bullet = bulletPool.GetInactiveGameObject();
-            if (bullet)
-            {
-                bullet.SetActive(true);
-                bullet.transform.position = transform.position;
-                bullet.GetComponent<Bullet>().dir = transform.forward;
-            }
-        }
+    private void FixedUpdate()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, _rb.velocity.y * _rotationSpeed);
+    }
 
-#elif UNITY_ANDROID
-        // movil
-        foreach(Touch toque in Input.touches)
-        {
-            if (toque.phase == TouchPhase.Began)
-            {
-                _rb.velocity = Vector3.zero;
-                _rb.AddForce(Vector3.up * force, ForceMode.Impulse);
-            }
-        }
-#endif
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameManager.instance.GameOver();
     }
 }
+
+    
 
