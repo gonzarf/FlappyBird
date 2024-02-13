@@ -374,6 +374,7 @@
 "Assets/Scripts/PipeMovement.cs"
 "Assets/Scripts/PipePool.cs"
 "Assets/Scripts/PipeSpawner.cs"
+"Assets/Scripts/PlaySoundScore.cs"
 "Assets/Scripts/Score.cs"
 -langversion:9.0
 
