@@ -916,6 +916,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -935,10 +936,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 024c7014-d78a-492d-8b41-de1de4d853ff
+  cloudProjectId: 1261506c-ff88-4150-a54b-30dd634f98d6
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: My project (1)
+  projectName: FlappyBird
   organizationId: gonzarf21
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
